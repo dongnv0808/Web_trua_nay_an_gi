@@ -1,0 +1,10 @@
+{
+  "name": "Web_trua_nay_an_gi",
+  "version": "1.0.0",
+  "dependencies": {
+    "local-storage": "^2.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "qs": "^6.11.0"
+  }
+}
