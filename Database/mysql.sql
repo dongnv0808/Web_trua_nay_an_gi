@@ -35,9 +35,7 @@ create table role_user(
 create table category(
 	id int primary key auto_increment,
     name varchar(50) not null,
-    type varchar(30) not null,
-    image varchar(30),
-    amoountAddress int default 0
+    type varchar(30) not null
 );
 
 create table restaurant(

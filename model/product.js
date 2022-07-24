@@ -1,0 +1,1 @@
+const Connection = require('connection')
