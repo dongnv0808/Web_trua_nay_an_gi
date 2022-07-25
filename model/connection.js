@@ -6,7 +6,7 @@ class Connection {
             host: 'localhost',
             user: 'root',
             password: '257946',
-            database: 'user'
+            database: 'module3'
         };
         return mysql.createConnection(configToMySQL);
     }

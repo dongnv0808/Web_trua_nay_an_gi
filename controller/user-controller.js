@@ -56,17 +56,39 @@ class UserController {
     }
 
     createUser(req, res) {
+        let success = true;
         let data = '';
         req.on('data', (chuck) => {
             data += chuck;
         });
         req.on('end', () => {
             let user = qs.parse(data);
-            this.user.createUser(user);
-            res.writeHead(301, {
-                location: '/resister'
-            });
-            return res.end();
+            let regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            if (!regexPassword.test(user.password)){
+                console.log('Mật khẩu phải có hơn 8 kí tự và ít nhất 1 số!');
+            }else {
+                if(user.password != user.passwordConfirm){
+                    console.log('Mật khẩu xác nhận không đúng!');
+                }else {
+                    let dataUser = this.user.getUser();
+                    for (let userCheck of dataUser) {
+                        if(user.email == userCheck.email) {
+                            console.log('email đã tồn tại!')
+                            success = false;
+                        }else if (user.phone == userCheck.phone) {
+                            console.log('Số điện thoại đã tồn tại')
+                            success = false;
+                        }
+                    };
+                    if (success = true) {
+                        this.user.createUser(user);
+                        res.writeHead(301, {
+                            location: '/resister'
+                        });
+                        return res.end();
+                    }
+                }
+            }
         })
     }
 
